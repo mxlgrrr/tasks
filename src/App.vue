@@ -18,14 +18,15 @@ const { user } = storeToRefs(userStore);
 
 onMounted(async () => {
   try {
-    await userStore.fetchUser()
-    if (!user) {
-      router.push({ name: "home" })
+    await userStore.fetchUser();
+    const isAuthenticated = Boolean(user.value);
+    if (!isAuthenticated) {
+      router.push({ name: "home" });
     } else {
-      router.push({ name: "tasks" })
+      router.push({ name: "tasks" });
     }
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 });
 

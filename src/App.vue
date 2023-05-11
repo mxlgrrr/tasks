@@ -15,7 +15,7 @@ const router = useRouter();
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 
-watch(() => router.currentRoute, async () => {
+watch(user, () => router.currentRoute, async () => {
   try {
     await userStore.fetchUser();
     const isAuthenticated = Boolean(user.value);

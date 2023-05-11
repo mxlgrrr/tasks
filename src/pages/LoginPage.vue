@@ -50,7 +50,6 @@
     const login = async () => {
         try {
             await userStore.signIn(email.value, password.value);
-            router.push({ name: "tasks" });
         } catch (error) {
             toast.error("Error: Invalid mail or password", { timeout: 5000 });
         }

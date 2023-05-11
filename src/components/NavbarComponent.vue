@@ -34,7 +34,7 @@
                         <router-link v-if="!user" to="/login" class="nav-link mx-2">Sign In</router-link>
                     </li>
                     <li class="nav-item">
-                        <a v-if="user" class="nav-link mx-2" role="button" @click="logout">Sign Out</a>
+                        <a v-if="user.value" class="nav-link mx-2" role="button" @click="logout">Sign Out</a>
                     </li>
                 </ul>
             </div>

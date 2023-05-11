@@ -28,10 +28,10 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <router-link v-if="user" to="/tasks" class="nav-link mx-2">My tasks</router-link>
+                        <router-link v-if="user.value" to="/tasks" class="nav-link mx-2">My tasks</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link v-if="!user" to="/login" class="nav-link mx-2">Sign In</router-link>
+                        <router-link v-if="!user.value" to="/login" class="nav-link mx-2">Sign In</router-link>
                     </li>
                     <li class="nav-item">
                         <a v-if="user.value" class="nav-link mx-2" role="button" @click="logout">Sign Out</a>

@@ -1,50 +1,42 @@
-<template>
-  <NavBar></NavBar>
-  <RouterView />
-</template>
-
 <script setup>
-import { onMounted, watch } from "vue";
-import { storeToRefs } from "pinia";
-import { useUserStore } from "./stores/user.js";
-import { useRouter } from "vue-router";
-import { RouterView } from "vue-router";
-import NavBar from "./components/NavbarComponent.vue";
+  import { onMounted, watch } from "vue";
+  import { storeToRefs } from "pinia";
+  import { useUserStore } from "./stores/user.js";
+  import { useRouter } from "vue-router";
+  import { RouterView } from "vue-router";
+  import NavBar from "./components/NavbarComponent.vue";
 
-const router = useRouter();
-const userStore = useUserStore();
-const { user } = storeToRefs(userStore);
+  const router = useRouter();
+  const userStore = useUserStore();
+  const { user } = storeToRefs(userStore);
 
-watch(user, () => router.currentRoute, async () => {
-  try {
-    await userStore.fetchUser();
-    const isAuthenticated = Boolean(user.value);
-    if (!isAuthenticated && router.currentRoute.name !== "home") {
-      router.push({ name: "home" });
-    } else if (isAuthenticated && router.currentRoute.name !== "tasks") {
-      router.push({ name: "tasks" });
+  watch(user, () => router.currentRoute, async () => {
+    try {
+      await userStore.fetchUser();
+      const isAuthenticated = Boolean(user.value);
+      if (!isAuthenticated && router.currentRoute.name !== "home") {
+        router.push({ name: "home" });
+      } else if (isAuthenticated && router.currentRoute.name !== "tasks") {
+        router.push({ name: "tasks" });
+      }
+    } catch (e) {
+      console.log(e);
     }
-  } catch (e) {
-    console.log(e);
-  }
-});
+  });
 
-onMounted(async () => {
-  try {
-    await userStore.fetchUser();
-    const isAuthenticated = Boolean(user.value);
-    if (!isAuthenticated) {
-      router.push({ name: "home" });
-    } else {
-      router.push({ name: "tasks" });
+  onMounted(async () => {
+    try {
+      await userStore.fetchUser();
+      const isAuthenticated = Boolean(user.value);
+      if (!isAuthenticated) {
+        router.push({ name: "home" });
+      } else {
+        router.push({ name: "tasks" });
+      }
+    } catch (e) {
+      console.log(e);
     }
-  } catch (e) {
-    console.log(e);
-  }
-});
-
-
-
+  });
 
 </script>
 
@@ -58,3 +50,8 @@ onMounted(async () => {
       height: 100%;
     }
 </style>
+
+<template>
+  <NavBar></NavBar>
+  <RouterView />
+</template>

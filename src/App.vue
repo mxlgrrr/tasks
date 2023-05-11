@@ -8,9 +8,9 @@
   const userStore = useUserStore();
   const { user } = storeToRefs(userStore);
   const router = useRouter();
-
-  watch(user, () => {
-    const isAuthenticated = Boolean(user.value);
+  const isAuthenticated = Boolean(user.value);
+  watch(isAuthenticated, () => {
+    
     if (!isAuthenticated && router.currentRoute.name !== "home") {
       router.push({ name: "home" });
     } else if (isAuthenticated && router.currentRoute.name !== "tasks") {
@@ -21,7 +21,6 @@
   onMounted(async () => {
     try {
       await userStore.fetchUser();
-      const isAuthenticated = Boolean(user.value);
       if (!isAuthenticated) {
         router.push({ name: "home" });
       } else {

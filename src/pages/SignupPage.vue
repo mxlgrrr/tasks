@@ -98,7 +98,7 @@
                 toast.success("Success! To verify your identity, we need you to confirm your email", { timeout: 5000 });
                 setTimeout(() => {
                 router.push({ name: "home" });
-                }, 10000);
+                }, 6000);
             } 
             catch (error) {
                 console.log(error);

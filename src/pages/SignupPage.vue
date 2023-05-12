@@ -97,7 +97,7 @@
                 await userStore.fetchUser(); // Actualizar el estado del usuario
                 toast.success("Success! To verify your identity, we need you to confirm your email", { timeout: 5000 });
                 setTimeout(() => {
-                router.push({ name: "tasks" });
+                router.push({ name: "home" });
                 }, 10000);
             } 
             catch (error) {

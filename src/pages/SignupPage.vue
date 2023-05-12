@@ -94,6 +94,7 @@
         if (password.value === confirmPassword.value) {
             try {
                 await userStore.signUp(email.value, password.value);
+                await userStore.fetchUser(); // Actualizar el estado del usuario
                 toast.success("Success! To verify your identity, we need you to confirm your email", { timeout: 5000 });
                 setTimeout(() => {
                 router.push({ name: "tasks" });
